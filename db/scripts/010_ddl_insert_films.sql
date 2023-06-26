@@ -1,4 +1,4 @@
-insert into films (id, name, description, year, genre_id, minimal_age, duration_in_minutes, file_id) values
+INSERT INTO films (id, name, description, `year`, genre_id, minimal_age, duration_in_minutes, file_id) VALUES
     (1, 'Boogeman', 'Boogeman description', 2023, 1, 18, 120, 1),
     (2, 'Elemental', 'Elemental description', 2023, 2, 14, 120, 2),
     (3, 'FastX', 'FastX description', 2023, 3, 18, 120, 3),
