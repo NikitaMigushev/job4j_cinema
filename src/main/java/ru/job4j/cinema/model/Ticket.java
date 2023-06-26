@@ -22,7 +22,8 @@ public class Ticket {
         this.userId = userId;
     }
 
-    public Ticket(int id, int sessionId, int rowNumber, int placeNumber, int userId, LocalDateTime creationDateTime) {
+    public Ticket(int id, int sessionId, int rowNumber,
+                  int placeNumber, int userId, LocalDateTime creationDateTime) {
         this.id = id;
         this.sessionId = sessionId;
         this.rowNumber = rowNumber;
@@ -88,7 +89,8 @@ public class Ticket {
             return false;
         }
         Ticket ticket = (Ticket) o;
-        return sessionId == ticket.sessionId && rowNumber == ticket.rowNumber && placeNumber == ticket.placeNumber;
+        return sessionId == ticket.sessionId && rowNumber == ticket.rowNumber
+                && placeNumber == ticket.placeNumber;
     }
 
     @Override

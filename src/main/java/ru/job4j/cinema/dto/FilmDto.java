@@ -1,28 +1,29 @@
-package ru.job4j.cinema.model;
+package ru.job4j.cinema.dto;
+
+import ru.job4j.cinema.model.Film;
+import ru.job4j.cinema.model.Genre;
 
 import java.util.Objects;
 
-public class Film {
+public class FilmDto {
     private int id;
     private String name;
     private String description;
     private int year;
     private int minimalAge;
     private int durationInMinutes;
-    private int fileId;
+    private String genre;
 
-    public Film() {
+    public FilmDto() {
     }
 
-    public Film(int id, String name, String description, int year,
-                int minimalAge, int durationInMinutes, int fileId) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.year = year;
-        this.minimalAge = minimalAge;
-        this.durationInMinutes = durationInMinutes;
-        this.fileId = fileId;
+    public FilmDto(Film film, Genre genre) {
+        this.id = film.getId();
+        this.name = film.getName();
+        this.year = film.getYear();
+        this.minimalAge = film.getMinimalAge();
+        this.durationInMinutes = film.getDurationInMinutes();
+        this.genre = genre.getName();
     }
 
     public int getId() {
@@ -73,12 +74,12 @@ public class Film {
         this.durationInMinutes = durationInMinutes;
     }
 
-    public int getFileId() {
-        return fileId;
+    public String getGenre() {
+        return genre;
     }
 
-    public void setFileId(int fileId) {
-        this.fileId = fileId;
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 
     @Override
@@ -89,12 +90,17 @@ public class Film {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Film film = (Film) o;
-        return id == film.id;
+        FilmDto filmDto = (FilmDto) o;
+        return id == filmDto.id && year == filmDto.year
+                && minimalAge == filmDto.minimalAge
+                && durationInMinutes == filmDto.durationInMinutes
+                && Objects.equals(name, filmDto.name)
+                && Objects.equals(description, filmDto.description)
+                && Objects.equals(genre, filmDto.genre);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(id, name, description, year, minimalAge, durationInMinutes, genre);
     }
 }

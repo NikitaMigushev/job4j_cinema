@@ -14,7 +14,8 @@ public class Session {
     public Session() {
     }
 
-    public Session(int id, int filmId, int hallsId, LocalDateTime startTime, LocalDateTime endTime, int price) {
+    public Session(int id, int filmId, int hallsId, LocalDateTime startTime,
+                   LocalDateTime endTime, int price) {
         this.id = id;
         this.filmId = filmId;
         this.hallsId = hallsId;
