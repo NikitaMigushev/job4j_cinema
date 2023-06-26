@@ -5,5 +5,6 @@ create table tickets
     row_number   int                               not null,
     place_number int                               not null,
     user_id      int                               not null,
+    creation_date timestamp,
     unique (session_id, row_number, place_number)
 );

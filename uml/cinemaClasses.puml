@@ -44,6 +44,7 @@ package "model" #DDDDDD {
         private String fullName;
         private String email;
         private String password
+        private LocalDateTime creationDateTime;
     }
 
     Class Ticket{
@@ -52,6 +53,7 @@ package "model" #DDDDDD {
         private int rowNumber;
         private int placeNumber;
         private int userId;
+        private LocalDateTime creationDateTime;
     }
 }
 
