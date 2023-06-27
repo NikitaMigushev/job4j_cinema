@@ -27,7 +27,6 @@ class Sql2oUserRepositoryTest {
         var url = properties.getProperty("datasource.url");
         var username = properties.getProperty("datasource.username");
         var password = properties.getProperty("datasource.password");
-
         var configuration = new DataSourceConfiguration();
         var datasource = configuration.connectionPool(url, username, password);
         var sql2o = configuration.databaseClient(datasource);
