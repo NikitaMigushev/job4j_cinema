@@ -3,16 +3,28 @@ package ru.job4j.cinema.dto;
 import ru.job4j.cinema.model.Film;
 import ru.job4j.cinema.model.Genre;
 
+import java.util.Map;
 import java.util.Objects;
 
 public class FilmDto {
+    public static final Map<String, String> COLUMN_MAPPING = Map.of(
+            "id", "id",
+            "name", "name",
+            "description", "description",
+            "release_year", "releaseYear",
+            "minimal_age", "minimalAge",
+            "duration_in_minutes", "durationInMinutes",
+            "file_id", "fileId",
+            "genre", "genre"
+    );
     private int id;
     private String name;
     private String description;
-    private int year;
+    private int releaseYear;
     private int minimalAge;
     private int durationInMinutes;
     private String genre;
+    private int fileId;
 
     public FilmDto() {
     }
@@ -20,10 +32,19 @@ public class FilmDto {
     public FilmDto(Film film, Genre genre) {
         this.id = film.getId();
         this.name = film.getName();
-        this.year = film.getYear();
+        this.releaseYear = film.getYear();
         this.minimalAge = film.getMinimalAge();
         this.durationInMinutes = film.getDurationInMinutes();
         this.genre = genre.getName();
+        this.fileId = film.getFileId();
+    }
+
+    public int getFileId() {
+        return fileId;
+    }
+
+    public void setFileId(int fileId) {
+        this.fileId = fileId;
     }
 
     public int getId() {
@@ -50,12 +71,12 @@ public class FilmDto {
         this.description = description;
     }
 
-    public int getYear() {
-        return year;
+    public int getReleaseYear() {
+        return releaseYear;
     }
 
-    public void setYear(int year) {
-        this.year = year;
+    public void setReleaseYear(int releaseYear) {
+        this.releaseYear = releaseYear;
     }
 
     public int getMinimalAge() {
@@ -91,7 +112,7 @@ public class FilmDto {
             return false;
         }
         FilmDto filmDto = (FilmDto) o;
-        return id == filmDto.id && year == filmDto.year
+        return id == filmDto.id && releaseYear == filmDto.releaseYear
                 && minimalAge == filmDto.minimalAge
                 && durationInMinutes == filmDto.durationInMinutes
                 && Objects.equals(name, filmDto.name)
@@ -101,6 +122,6 @@ public class FilmDto {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, year, minimalAge, durationInMinutes, genre);
+        return Objects.hash(id, name, description, releaseYear, minimalAge, durationInMinutes, genre);
     }
 }

@@ -6,12 +6,12 @@ package "model" #DDDDDD {
         private String path;
     }
 
-    Class Genre{
+    Class Genre {
         private int id;
         private String name;
         }
 
-    Class Film{
+    Class Film {
         private int id;
         private String name;
         private String description;
@@ -39,7 +39,7 @@ package "model" #DDDDDD {
         private int price;
         }
 
-    Class User{
+    Class User {
         private int id;
         private String fullName;
         private String email;
@@ -47,7 +47,7 @@ package "model" #DDDDDD {
         private LocalDateTime creationDateTime;
     }
 
-    Class Ticket{
+    Class Ticket {
         private int id;
         private int sessionId;
         private int rowNumber;
@@ -106,8 +106,8 @@ package "repository" #DDDDDD {
     }
 
     Class Sql2oFilmRepository implements FilmRepository {
-         Optional<Film> findById(int id);
-         Collection<Film> findAll();
+         Optional<FilmDto> findById(int id);
+         Collection<FilmDto> findAll();
     }
 
      Class Sql2oTicketRepository implements TicketRepository {

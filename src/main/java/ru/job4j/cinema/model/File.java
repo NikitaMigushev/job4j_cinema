@@ -2,15 +2,24 @@ package ru.job4j.cinema.model;
 
 import java.util.Objects;
 
-public class FIle {
+public class File {
+
     private int id;
+
     private String name;
+
     private String path;
 
-    public FIle() {
+    public File() {
+
     }
 
-    public FIle(int id, String name, String path) {
+    public File(String name, String path) {
+        this.name = name;
+        this.path = path;
+    }
+
+    public File(int id, String name, String path) {
         this.id = id;
         this.name = name;
         this.path = path;
@@ -48,21 +57,12 @@ public class FIle {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        FIle fIle = (FIle) o;
-        return id == fIle.id && Objects.equals(path, fIle.path);
+        File file = (File) o;
+        return id == file.id && Objects.equals(path, file.path);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(id, path);
-    }
-
-    @Override
-    public String toString() {
-        return "FIle{"
-                + "id=" + id
-                + ", name='" + name + '\''
-                + ", path='" + path + '\''
-                + '}';
     }
 }
