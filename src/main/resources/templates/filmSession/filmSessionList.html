@@ -14,8 +14,26 @@
 <body>
 <div class="container-fluid p-0">
     <header th:insert="blocks/header :: header"></header>
-    <div class="container mt-2">
-        <h3>Schedule List</h3>
+    <div class="container">
+        <div class="row">
+            <h3>Расписание</h3>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col" style="width: 20%">Дата/Время начала</th>
+                    <th scope="col" style="width: 40%">Название</th>
+                    <th scope="col" style="width: 40%">Продолжительность</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="filmSession: ${filmSessionList}">
+                    <td th:text="${#temporals.format(filmSession.startTime, 'dd.MM.yy HH:mm')}" />
+                    <td th:text="${filmSession.filmName}" />
+                    <td th:text="${filmSession.durationInMinutes}" />
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
     <footer class="text-center text-lg-start fixed-bottom" th:insert="blocks/footer :: footer"></footer>
 </div>

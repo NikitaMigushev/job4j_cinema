@@ -39,7 +39,6 @@ public class DataSourceConfiguration {
         return new NoQuirks() {
             {
                 converters.put(LocalDateTime.class, new Converter<LocalDateTime>() {
-
                     @Override
                     public LocalDateTime convert(Object value) throws ConverterException {
                         if (value == null) {
@@ -55,7 +54,6 @@ public class DataSourceConfiguration {
                     public Object toDatabaseParam(LocalDateTime value) {
                         return value == null ? null : Timestamp.valueOf(value);
                     }
-
                 });
             }
         };

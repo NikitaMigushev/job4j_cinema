@@ -1,32 +1,53 @@
 package ru.job4j.cinema.dto;
 
 import ru.job4j.cinema.model.Film;
+import ru.job4j.cinema.model.Genre;
 import ru.job4j.cinema.model.Hall;
 import ru.job4j.cinema.model.Session;
 
 import java.time.LocalDateTime;
+import java.util.Map;
 import java.util.Objects;
 
 public class SessionDto {
+
+    public static final Map<String, String> COLUMN_MAPPING = Map.of(
+            "id", "id",
+            "film_id", "filmId",
+            "film_name", "filmName",
+            "genre_name", "genreName",
+            "halls_id", "hallId",
+            "hall_name", "hallName",
+            "start_time", "startTime",
+            "end_time", "endTime",
+            "prise", "price",
+            "duration_in_minutes", "durationInMinutes"
+    );
     private int id;
-    private String filmName;
     private int filmId;
-    private String hallsName;
+    private String filmName;
+    private String genreName;
+    private int hallId;
+    private String hallName;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private int price;
+    private int durationInMinutes;
 
     public SessionDto() {
     }
 
-    public SessionDto(Session session, Film film, Hall hall) {
+    public SessionDto(Session session, Film film, Hall hall, Genre genre) {
         this.id = session.getId();
         this.filmName = film.getName();
         this.filmId = film.getId();
-        this.hallsName = hall.getName();
+        this.hallName = hall.getName();
         this.startTime = session.getStartTime();
         this.endTime = session.getEndTime();
         this.price = session.getPrice();
+        this.hallId = hall.getId();
+        this.genreName = genre.getName();
+        this.durationInMinutes = film.getDurationInMinutes();
     }
 
     public int getId() {
@@ -53,12 +74,12 @@ public class SessionDto {
         this.filmId = filmId;
     }
 
-    public String getHallsName() {
-        return hallsName;
+    public String getHallName() {
+        return hallName;
     }
 
-    public void setHallsName(String hallsName) {
-        this.hallsName = hallsName;
+    public void setHallName(String hallsName) {
+        this.hallName = hallsName;
     }
 
     public LocalDateTime getStartTime() {
@@ -85,6 +106,30 @@ public class SessionDto {
         this.price = price;
     }
 
+    public String getGenreName() {
+        return genreName;
+    }
+
+    public void setGenreName(String genreName) {
+        this.genreName = genreName;
+    }
+
+    public int getHallId() {
+        return hallId;
+    }
+
+    public void setHallId(int hallId) {
+        this.hallId = hallId;
+    }
+
+    public int getDurationInMinutes() {
+        return durationInMinutes;
+    }
+
+    public void setDurationInMinutes(int durationInMinutes) {
+        this.durationInMinutes = durationInMinutes;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -97,14 +142,14 @@ public class SessionDto {
         return id == that.id && filmId == that.filmId
                 && price == that.price
                 && Objects.equals(filmName, that.filmName)
-                && Objects.equals(hallsName, that.hallsName)
+                && Objects.equals(hallName, that.hallName)
                 && Objects.equals(startTime, that.startTime)
                 && Objects.equals(endTime, that.endTime);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, filmName, filmId, hallsName, startTime, endTime, price);
+        return Objects.hash(id, filmName, filmId, hallName, startTime, endTime, price);
     }
 
     @Override
@@ -113,7 +158,7 @@ public class SessionDto {
                 + "id=" + id
                 + ", filmName='" + filmName + '\''
                 + ", filmId=" + filmId
-                + ", hallsName='" + hallsName + '\''
+                + ", hallsName='" + hallName + '\''
                 + ", startTime=" + startTime
                 + ", endTime=" + endTime
                 + ", price=" + price
