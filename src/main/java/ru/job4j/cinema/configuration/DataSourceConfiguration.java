@@ -16,7 +16,6 @@ import java.time.LocalDateTime;
 
 @Configuration
 public class DataSourceConfiguration {
-
     @Bean
     public DataSource connectionPool(@Value("${datasource.url}") String url,
                                      @Value("${datasource.username}") String username,

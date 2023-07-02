@@ -6,29 +6,35 @@ import ru.job4j.cinema.model.Hall;
 import ru.job4j.cinema.model.Session;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
 public class SessionDto {
 
-    public static final Map<String, String> COLUMN_MAPPING = Map.of(
-            "id", "id",
-            "film_id", "filmId",
-            "film_name", "filmName",
-            "genre_name", "genreName",
-            "halls_id", "hallId",
-            "hall_name", "hallName",
-            "start_time", "startTime",
-            "end_time", "endTime",
-            "prise", "price",
-            "duration_in_minutes", "durationInMinutes"
-    );
+    public static final Map<String, String> COLUMN_MAPPING = new HashMap<>();
+    static {
+        COLUMN_MAPPING.put("id", "id");
+        COLUMN_MAPPING.put("film_id", "filmId");
+        COLUMN_MAPPING.put("film_name", "filmName");
+        COLUMN_MAPPING.put("genre_name", "genreName");
+        COLUMN_MAPPING.put("halls_id", "hallId");
+        COLUMN_MAPPING.put("hall_name", "hallName");
+        COLUMN_MAPPING.put("start_time", "startTime");
+        COLUMN_MAPPING.put("end_time", "endTime");
+        COLUMN_MAPPING.put("prise", "price");
+        COLUMN_MAPPING.put("duration_in_minutes", "durationInMinutes");
+        COLUMN_MAPPING.put("row_count", "rowCount");
+        COLUMN_MAPPING.put("place_count", "placeCount");
+    }
     private int id;
     private int filmId;
     private String filmName;
     private String genreName;
     private int hallId;
     private String hallName;
+    private int rowCount;
+    private int placeCount;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private int price;
@@ -48,6 +54,8 @@ public class SessionDto {
         this.hallId = hall.getId();
         this.genreName = genre.getName();
         this.durationInMinutes = film.getDurationInMinutes();
+        this.rowCount = hall.getRowCount();
+        this.placeCount = hall.getPlaceCount();
     }
 
     public int getId() {
@@ -128,6 +136,22 @@ public class SessionDto {
 
     public void setDurationInMinutes(int durationInMinutes) {
         this.durationInMinutes = durationInMinutes;
+    }
+
+    public int getRowCount() {
+        return rowCount;
+    }
+
+    public void setRowCount(int rowCount) {
+        this.rowCount = rowCount;
+    }
+
+    public int getPlaceCount() {
+        return placeCount;
+    }
+
+    public void setPlaceCount(int placeCount) {
+        this.placeCount = placeCount;
     }
 
     @Override

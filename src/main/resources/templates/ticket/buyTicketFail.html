@@ -9,19 +9,15 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 
-    <title>Cinema</title>
+    <title>Бидет куплен</title>
 </head>
 <body>
 <div class="container-fluid p-0">
     <header th:insert="blocks/header :: header"></header>
     <div class="container mt-2">
-        <h3>Кинотеатр</h3>
-        <p>Добро пожаловать в кинотеатр.</p>
-        <ul>
-            <li><a th:href="@{/films/filmList}">Фильмотека</a></li>
-            <li><a th:href="@{/filmSession/filmSessionList}">Расписание</a></li>
-        </ul>
-
+        <h3>Ошибка покупки билета</h3>
+        <p>Билет с таким рядом и местом уже занят, выберите другое место.</p>
+        <p><a th:href="@{/filmSession/filmSessionList}">Вернуться к расписанию</a></p>
     </div>
     <footer class="text-center text-lg-start fixed-bottom" th:insert="blocks/footer :: footer"></footer>
 </div>

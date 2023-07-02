@@ -1,35 +1,43 @@
 package ru.job4j.cinema.model;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.util.Map;
 import java.util.Objects;
 
 public class Ticket {
+    public static final Map<String, String> COLUMN_MAPPING = Map.of(
+            "id", "id",
+            "session_id", "sessionId",
+            "row_number", "rowNumber",
+            "place_number", "placeNumber",
+            "user_id", "userId",
+            "creation_date", "creationDateTime"
+    );
     private int id;
     private int sessionId;
     private int rowNumber;
     private int placeNumber;
     private int userId;
-    private LocalDateTime creationDateTime = LocalDateTime.now();
+    private LocalDateTime creationDateTime = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
 
     public Ticket() {
     }
 
-    public Ticket(int id, int sessionId, int rowNumber, int placeNumber, int userId) {
-        this.id = id;
-        this.sessionId = sessionId;
-        this.rowNumber = rowNumber;
-        this.placeNumber = placeNumber;
-        this.userId = userId;
-    }
-
-    public Ticket(int id, int sessionId, int rowNumber,
-                  int placeNumber, int userId, LocalDateTime creationDateTime) {
+    public Ticket(int id, int sessionId, int rowNumber, int placeNumber, int userId, LocalDateTime creationDateTime) {
         this.id = id;
         this.sessionId = sessionId;
         this.rowNumber = rowNumber;
         this.placeNumber = placeNumber;
         this.userId = userId;
         this.creationDateTime = creationDateTime;
+    }
+
+    public Ticket(int sessionId, int rowNumber, int placeNumber, int userId) {
+        this.sessionId = sessionId;
+        this.rowNumber = rowNumber;
+        this.placeNumber = placeNumber;
+        this.userId = userId;
     }
 
     public int getId() {

@@ -19,13 +19,15 @@ public class Sql2oSessionRepository implements SessionRepository {
     public Optional<SessionDto> findById(int id) {
         try (var connection = sql2o.open()) {
             var query = connection.createQuery("select "
-                    + "fs.id,"
+                    + "fs.id, "
                     + "fs.film_id, "
                     + "f.name as film_name, "
                     + "g.name as genre_name, "
                     + "f.duration_in_minutes, "
                     + "fs.halls_id, "
                     + "h.name as hall_name, "
+                    + "h.row_count ,"
+                    + "h.place_count ,"
                     + "fs.start_time, "
                     + "fs.end_time, "
                     + "fs.price "
