@@ -27,4 +27,23 @@
 create database cinema;
 
 ## Взаимодействие с приложением
+Авторизация
 <image src="https://github.com/NikitaMigushev/job4j_cinema/blob/master/img/1.png" alt="Текст с описанием картинки" />
+
+Главная страница
+<image src="https://github.com/NikitaMigushev/job4j_cinema/blob/master/img/2.png" alt="Текст с описанием картинки" />
+
+Кинотека
+<image src="https://github.com/NikitaMigushev/job4j_cinema/blob/master/img/3.png" alt="Текст с описанием картинки" />
+
+Расписание
+<image src="https://github.com/NikitaMigushev/job4j_cinema/blob/master/img/4.png" alt="Текст с описанием картинки" />
+
+Покупка билета
+<image src="https://github.com/NikitaMigushev/job4j_cinema/blob/master/img/5.png" alt="Текст с описанием картинки" />
+
+Билет куплен успешно
+<image src="https://github.com/NikitaMigushev/job4j_cinema/blob/master/img/6.png" alt="Текст с описанием картинки" />
+
+Ошибка покупки билета
+<image src="https://github.com/NikitaMigushev/job4j_cinema/blob/master/img/7.png" alt="Текст с описанием картинки" />
