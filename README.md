@@ -27,4 +27,4 @@
 create database cinema;
 
 ## Взаимодействие с приложением
-<image src="/img/1.jpg" alt="Текст с описанием картинки" />
+<image src="https://github.com/NikitaMigushev/job4j_cinema/blob/master/img/1.png" alt="Текст с описанием картинки" />
