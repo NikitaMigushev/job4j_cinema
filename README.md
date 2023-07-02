@@ -27,4 +27,4 @@
 create database cinema;
 
 ## Взаимодействие с приложением
-<image src="/imag/1.jpg" alt="Текст с описанием картинки" />
+<image src="/img/1.jpg" alt="Текст с описанием картинки" />
