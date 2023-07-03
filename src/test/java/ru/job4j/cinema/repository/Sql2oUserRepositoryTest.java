@@ -76,7 +76,6 @@ class Sql2oUserRepositoryTest {
 
     @Test
     public void whenFindAllSuccess() {
-        // Create test users
         LocalDateTime creationDate = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
         Optional<User> userA = sql2oUserRepository.save(new User(1, "John Doe", "john@example.com", "passwordA", creationDate));
         Optional<User> userB = sql2oUserRepository.save(new User(2, "Jane Smith", "jane@example.com", "passwordB", creationDate));
