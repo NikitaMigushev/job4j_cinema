@@ -54,14 +54,10 @@ public class UserController {
 
     @PostMapping("/register")
     public String register(Model model, @ModelAttribute User user, HttpServletRequest request) {
-        if (userService.findByEmailAndPassword(user.getEmail(), user.getPassword()).isPresent()) {
-            model.addAttribute("message", "Пользователь с такой почтой уже существует");
-            return "errors/404";
-        }
         var savedUser = userService.save(user);
         if (savedUser.isEmpty()) {
             model.addAttribute("message", "Пользователь с такой почтой уже существует");
-            return "errors/404";
+            return "users/register";
         }
         var session = request.getSession();
         session.setAttribute("user", savedUser.get());

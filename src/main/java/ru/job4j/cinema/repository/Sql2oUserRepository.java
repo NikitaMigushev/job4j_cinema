@@ -20,10 +20,10 @@ public class Sql2oUserRepository implements UserRepository {
     public Optional<User> save(User user) {
         try (Connection conn = sql2o.open()) {
             int generatedId = (int) conn.createQuery(
-                    "INSERT INTO users "
-                    + "(full_name, email, password, creation_date)"
-                    + "VALUES (:fullName, :email, :password, :creationDateTime)"
-            )
+                            "INSERT INTO users "
+                                    + "(full_name, email, password, creation_date)"
+                                    + "VALUES (:fullName, :email, :password, :creationDateTime)"
+                    )
                     .addParameter("fullName", user.getFullName())
                     .addParameter("email", user.getEmail())
                     .addParameter("password", user.getPassword())
@@ -68,16 +68,16 @@ public class Sql2oUserRepository implements UserRepository {
 
     @Override
     public Optional<User> findByEmailAndPassword(String email, String password) {
-       try (Connection conn = sql2o.open()) {
-           User user = conn.createQuery("SELECT * FROM users WHERE email = :email AND password = :password")
-                   .addParameter("email", email)
-                   .addParameter("password", password)
-                   .setColumnMappings(User.COLUMN_MAPPING)
-                   .executeAndFetchFirst(User.class);
-           return Optional.ofNullable(user);
-       } catch (Exception e) {
-           e.printStackTrace();
-           return Optional.empty();
-       }
-     }
+        try (Connection conn = sql2o.open()) {
+            User user = conn.createQuery("SELECT * FROM users WHERE email = :email AND password = :password")
+                    .addParameter("email", email)
+                    .addParameter("password", password)
+                    .setColumnMappings(User.COLUMN_MAPPING)
+                    .executeAndFetchFirst(User.class);
+            return Optional.ofNullable(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Optional.empty();
+    }
 }

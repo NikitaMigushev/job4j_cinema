@@ -49,17 +49,12 @@ public class TicketController {
 
     @PostMapping("/buyTicket")
     public String buyTicket(Model model, @ModelAttribute Ticket ticket, HttpSession session) {
-        try {
-            var savedTicket = ticketService.save(ticket);
-            if (savedTicket.isEmpty()) {
-                return "ticket/buyTicketFail";
-            } else {
-                session.setAttribute("ticket", savedTicket.get());
-                return "redirect:/ticket/viewTicket";
-            }
-        } catch (Exception exception) {
-            return "errors/404";
+        var savedTicket = ticketService.save(ticket);
+        if (savedTicket.isEmpty()) {
+            return "ticket/buyTicketFail";
         }
+        session.setAttribute("ticket", savedTicket.get());
+        return "redirect:/ticket/viewTicket";
     }
 
     @GetMapping("/buyTicketFail")
@@ -71,8 +66,8 @@ public class TicketController {
     public String getViewTicketPage(Model model, HttpSession session) {
         Ticket ticket = (Ticket) session.getAttribute("ticket");
         FilmDto film = (FilmDto) session.getAttribute("film");
-        Hall hall  = (Hall) session.getAttribute("hall");
-        SessionDto filmSession  = (SessionDto) session.getAttribute("filmSession");
+        Hall hall = (Hall) session.getAttribute("hall");
+        SessionDto filmSession = (SessionDto) session.getAttribute("filmSession");
         model.addAttribute("ticket", ticket);
         model.addAttribute("film", film);
         model.addAttribute("hall", hall);

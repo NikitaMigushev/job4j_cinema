@@ -109,6 +109,6 @@ class UserControllerTest {
         when(userService.save(user)).thenReturn(Optional.empty());
         String viewName = userController.register(model, user, request);
         verify(model, times(1)).addAttribute("message", "Пользователь с такой почтой уже существует");
-        assertThat(viewName).isEqualTo("errors/404");
+        assertThat(viewName).isEqualTo("users/register");
     }
 }

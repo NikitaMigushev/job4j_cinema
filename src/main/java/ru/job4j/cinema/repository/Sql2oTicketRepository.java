@@ -19,13 +19,6 @@ public class Sql2oTicketRepository implements TicketRepository {
 
     @Override
     public Optional<Ticket> save(Ticket ticket) {
-        var filmSession = sessionRepository.findById(ticket.getSessionId()).get();
-        if (ticket.getRowNumber() > filmSession.getRowCount()
-        || ticket.getRowNumber() <= 0
-        || ticket.getPlaceNumber() > filmSession.getPlaceCount()
-        || ticket.getPlaceNumber() < 0) {
-            return Optional.empty();
-        }
         try (var connection = sql2o.open()) {
             var sql = """
                     INSERT INTO TICKETS (session_id, row_number, place_number, user_id, creation_date)
@@ -72,9 +65,5 @@ public class Sql2oTicketRepository implements TicketRepository {
             var query = connection.createQuery("SELECT * FROM TICKETS");
             return query.setColumnMappings(Ticket.COLUMN_MAPPING).executeAndFetch(Ticket.class);
         }
-    }
-
-    public Sql2o getSql2o() {
-        return sql2o;
     }
 }

@@ -3,25 +3,34 @@ package ru.job4j.cinema.repository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.sql2o.Sql2o;
 import ru.job4j.cinema.configuration.DataSourceConfiguration;
 import ru.job4j.cinema.model.Ticket;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Optional;
 import java.util.Properties;
-import static org.assertj.core.api.Assertions.*;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 
 class Sql2oTicketRepositoryTest {
     private static Sql2oTicketRepository sql2oTicketRepository;
+    private final Sql2o sql2o;
+    public Sql2oTicketRepositoryTest() throws Exception {
+        Properties properties = loadConnectionProperties();
+        var url = properties.getProperty("datasource.url");
+        var username = properties.getProperty("datasource.username");
+        var password = properties.getProperty("datasource.password");
+        sql2o = new Sql2o(url, username, password);
+    }
 
     @BeforeAll
     public static void initRepositories() throws Exception {
-        var properties = new Properties();
-        try (var inputStream = Sql2oUserRepositoryTest.class.getClassLoader().getResourceAsStream("connection.properties")) {
-            properties.load(inputStream);
-        }
+        Properties properties = loadConnectionProperties();
         var url = properties.getProperty("datasource.url");
         var username = properties.getProperty("datasource.username");
         var password = properties.getProperty("datasource.password");
@@ -32,13 +41,21 @@ class Sql2oTicketRepositoryTest {
         sql2oTicketRepository = new Sql2oTicketRepository(sql2o);
     }
 
+    private static Properties loadConnectionProperties() throws IOException {
+        Properties properties = new Properties();
+        try (InputStream inputStream = Sql2oTicketRepositoryTest.class.getClassLoader().getResourceAsStream("connection.properties")) {
+            properties.load(inputStream);
+        }
+        return properties;
+    }
+
     @AfterEach
     public void cleanTickets() {
         var tickets = sql2oTicketRepository.findAll();
         for (var ticket : tickets) {
             sql2oTicketRepository.deleteById(ticket.getId());
         }
-        try (var connection = sql2oTicketRepository.getSql2o().open()) {
+        try (var connection = sql2o.beginTransaction()) {
             var resetQuery = "ALTER TABLE TICKETS ALTER COLUMN id RESTART WITH 1";
             connection.createQuery(resetQuery).executeUpdate();
         }
