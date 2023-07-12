@@ -14,6 +14,10 @@ import java.io.IOException;
 @Order(1)
 public class AuthorizationFilter extends HttpFilter {
 
+    /**
+     *Method checks if user is on registration page or login page, if so - move to SessionFilter
+     * If not, check if user is logged in. If not redirect to login page. If so move to SessionFilter
+     */
     @Override
     protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
         var uri = request.getRequestURI();

@@ -96,7 +96,7 @@ class UserControllerTest {
         when(userService.save(user)).thenReturn(Optional.of(user));
         String viewName = userController.register(model, user, request);
         verify(model, never()).addAttribute(eq("message"), anyString());
-        assertThat(viewName).isEqualTo("redirect:/schedule/scheduleList");
+        assertThat(viewName).isEqualTo("redirect:/filmSession/filmSessionList");
     }
 
     @Test

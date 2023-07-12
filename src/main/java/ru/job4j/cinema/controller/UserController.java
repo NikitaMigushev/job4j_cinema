@@ -57,11 +57,12 @@ public class UserController {
         var savedUser = userService.save(user);
         if (savedUser.isEmpty()) {
             model.addAttribute("message", "Пользователь с такой почтой уже существует");
+            user.setFullName("Гость");
             return "users/register";
         }
         var session = request.getSession();
         session.setAttribute("user", savedUser.get());
 
-        return "redirect:/schedule/scheduleList";
+        return "redirect:/filmSession/filmSessionList";
     }
 }
